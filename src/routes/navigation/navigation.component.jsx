@@ -16,13 +16,12 @@ const Navigation = () => {
           </div>
         </Link>
         {/* links container */}
-        <div className="flex h-[100%]">
-          <div className="px-4 py-2 border rounded-lg   bg-rose-400 transition-all duration-300 hover:bg-rose-600 hover:-translate-y-[2px] hover:text-white">
-            <Link className="" to="/auth">
-              Sign In
-            </Link>
-          </div>
-        </div>
+        <Link
+          className="px-4 py-2 border rounded-lg bg-rose-400 transition-all duration-300 hover:bg-rose-600 hover:-translate-y-[2px] hover:text-white"
+          to="/auth"
+        >
+          Sign In
+        </Link>
       </div>
       <Outlet />
     </div>

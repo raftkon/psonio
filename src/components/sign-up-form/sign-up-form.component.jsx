@@ -31,7 +31,6 @@ const SignUpForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const { email, displayName, password, confirmPassword } = formFields;
     if (password !== confirmPassword) {
       alert("Passwords don't match!");
       return;
@@ -53,15 +52,15 @@ const SignUpForm = () => {
     // const userDocRef = await createUserDocumentFromAuth(re)
   };
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col w-[35%]">
       <h2 className="mt-4">Don't have an account</h2>
-      <span className="text-xl font-semibold mb-4">
+      <span className="text-xl font-semibold mb-8">
         Sign up with your email and password
       </span>
       <form
         action=""
         onSubmit={handleSubmit}
-        className="flex flex-col w-[30%] justify-center space-y-2"
+        className="flex flex-col justify-center space-y-6"
       >
         <FormInput
           label="Display Name"
