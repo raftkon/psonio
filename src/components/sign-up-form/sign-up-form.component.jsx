@@ -40,8 +40,8 @@ const SignUpForm = () => {
         email,
         password
       );
-
       await createUserDocumentFromAuth(response.user, { displayName });
+
       resetFormFields();
     } catch (error) {
       if (error.code === "auth/email-already-in-use") {
@@ -49,7 +49,6 @@ const SignUpForm = () => {
       }
       console.log("An error occurred: ", error);
     }
-    // const userDocRef = await createUserDocumentFromAuth(re)
   };
   return (
     <div className="flex flex-col w-[35%]">
@@ -87,7 +86,7 @@ const SignUpForm = () => {
         <FormInput
           label="Password"
           inputOptions={{
-            type: "passowrd",
+            type: "password",
             required: true,
             id: "password",
             onChange: handleChange,

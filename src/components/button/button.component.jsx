@@ -16,7 +16,7 @@ const buttonStyles = (type) => {
 const Button = ({ children, buttonType = "default", ...otherProps }) => {
   return (
     <button
-      className={`px-6 py-3  rounded transition
+      className={`px-4 py-2  rounded transition
         duration-300 font-semibold hover:border ${buttonStyles(buttonType)}`}
       {...otherProps}
     >

@@ -15,7 +15,7 @@ const CategoryItem = ({ category }) => {
       />
       {/* category-body-container */}
       <div
-        className="h-[90px] py-0 px-6 flex flex-col items-center 
+        className="h-[90px] py-0 px-6 flex rounded-sm flex-col items-center 
               justify-center bordeborder-black bg-white opacity-70
               absolute group-hover:opacity-90 "
       >

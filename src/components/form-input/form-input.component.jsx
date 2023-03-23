@@ -6,7 +6,7 @@ const FormInput = ({ label, inputOptions }) => {
       <label className="font-light" htmlFor={inputOptions.id}>
         {label}
       </label>
-      <input className="border-b-2 rounded px-2" {...inputOptions} />
+      <input className="border-b-2  px-2" {...inputOptions} />
     </div>
   );
 };
