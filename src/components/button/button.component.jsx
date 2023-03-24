@@ -13,11 +13,18 @@ const buttonStyles = (type) => {
   }
 };
 
-const Button = ({ children, buttonType = "default", ...otherProps }) => {
+const Button = ({
+  children,
+  buttonType = "default",
+  className = "",
+  ...otherProps
+}) => {
   return (
     <button
-      className={`px-4 py-2  rounded transition
-        duration-300 font-semibold hover:border ${buttonStyles(buttonType)}`}
+      className={`px-4 py-2 rounded transition
+        duration-300 font-semibold hover:border ${buttonStyles(
+          buttonType
+        )} ${className}`}
       {...otherProps}
     >
       {children}
