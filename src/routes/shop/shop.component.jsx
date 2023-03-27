@@ -1,15 +1,18 @@
 import React, { useContext } from "react";
-import ProductCard from "../../components/product-card/product-card.component";
-import { ProductsContext } from "../../contexts/products.context";
+import CategoryPreview from "../../components/category-preview/category-preview.component";
+import { CategoriesContext } from "../../contexts/categories.context";
 
 const Shop = () => {
-  const { products } = useContext(ProductsContext);
+  const { categoriesMap } = useContext(CategoriesContext);
+  console.log(categoriesMap);
   return (
-    <div className="grid grid-cols-4 gap-x-2 gap-y-4 mb-6">
-      {products.map((product) => (
-        <ProductCard key={product.id} product={product} />
+    <>
+      {Object.keys(categoriesMap).map((title, idx) => (
+        <div key={idx}>
+          <CategoryPreview title={title} products={categoriesMap[title]} />
+        </div>
       ))}
-    </div>
+    </>
   );
 };
 

@@ -22,9 +22,9 @@ const ProductCard = ({ product }) => {
         alt={name}
         className="w-full h-[90%] rounded object-cover group-hover:opacity-[90%]"
       />
-      <div className="w-full h-[10%] flex justify-between items-center text-base p-4">
-        <span className="w-[90%]">{name}</span>
-        <span className="w-[10%]">{price}&euro;</span>
+      <div className="w-full h-[10%] flex justify-between items-center text-sm px-2">
+        <span>{name}</span>
+        <span>{price}&euro;</span>
       </div>
       {/* <div className="w-[80%] opacity-[70%] absolute top-60 hidden hover:flex hover:opacity-[95%]"> */}
       <Button
