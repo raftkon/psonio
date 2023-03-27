@@ -3,8 +3,15 @@ import {
   signInAuthUserWithEmailAndPassword,
   signInWithGooglePopup,
 } from "../../utils/firebase/firebase.utils";
-import Button from "../button/button.component";
+import Button, { BUTTON_TYPES_CLASSES } from "../button/button.component";
 import FormInput from "../form-input/form-input.component";
+import {
+  ButtonsContainer,
+  Container,
+  Form,
+  TextHaveAccount,
+  TextSignIn,
+} from "./sign-in-form.styles";
 
 const defaultFormFields = {
   email: "",
@@ -48,12 +55,10 @@ const SignInForm = () => {
   };
 
   return (
-    <div className="flex flex-col w-[35%]">
-      <h2 className="mt-4">Already have an account?</h2>
-      <span className="text-xl font-semibold mb-8">
-        Sign in with your email and password
-      </span>
-      <form onSubmit={handleSubmit} className="space-y-6">
+    <Container>
+      <TextHaveAccount>Already have an account?</TextHaveAccount>
+      <TextSignIn>Sign in with your email and password</TextSignIn>
+      <Form onSubmit={handleSubmit}>
         <FormInput
           label="Email"
           inputOptions={{
@@ -76,18 +81,20 @@ const SignInForm = () => {
             value: password,
           }}
         />
-        <div className="space-x-2">
-          <Button type="submit">Sign in</Button>
+        <ButtonsContainer>
+          <Button buttonType={BUTTON_TYPES_CLASSES.base} type="submit">
+            Sign in
+          </Button>
           <Button
             type="button"
-            buttonType="google"
+            buttonType={BUTTON_TYPES_CLASSES.google}
             onClick={signInWithGooglePopup}
           >
             Sign in with google
           </Button>
-        </div>
-      </form>
-    </div>
+        </ButtonsContainer>
+      </Form>
+    </Container>
   );
 };
 

@@ -1,13 +1,12 @@
 import React from "react";
+import { Container, Input, Label } from "./form-input.styles";
 
 const FormInput = ({ label, inputOptions }) => {
   return (
-    <div className="flex flex-col">
-      <label className="font-light" htmlFor={inputOptions.id}>
-        {label}
-      </label>
-      <input className="border-b-2  px-2" {...inputOptions} />
-    </div>
+    <Container>
+      <Label htmlFor={inputOptions.id}>{label}</Label>
+      <Input {...inputOptions} />
+    </Container>
   );
 };
 

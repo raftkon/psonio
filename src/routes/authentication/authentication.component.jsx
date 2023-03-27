@@ -1,15 +1,16 @@
 import React from "react";
 import SignInForm from "../../components/sign-in-form/sign-in-form.component";
 import SignUpForm from "../../components/sign-up-form/sign-up-form.component";
+import { Container, InnerContainer } from "./authentication.styles";
 
 const Authentication = () => {
   return (
-    <div className="">
-      <div className="flex justify-center space-x-40">
+    <Container>
+      <InnerContainer>
         <SignInForm />
         <SignUpForm />
-      </div>
-    </div>
+      </InnerContainer>
+    </Container>
   );
 };
 

@@ -1,32 +1,37 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { CartContext } from "../../contexts/cart.context";
-import Button from "../button/button.component";
+import Button, { BUTTON_TYPES_CLASSES } from "../button/button.component";
 import CartItem from "../cart-item/cart-item.component";
+import { Container, ItemsContainer, Text } from "./cart-dropdown.styles";
 
 const CartDropdown = () => {
   const { cartItems } = useContext(CartContext);
+  const navigate = useNavigate();
+
+  const goToCheckoutHandler = () => {
+    navigate("/checkout");
+  };
+
   return (
-    <div
-      className="absolute right-20 top-16 rounded border border-black flex flex-col 
-      p-5 w-64 h-80 z-10 bg-white transition"
-    >
+    <Container>
       {cartItems.length !== 0 ? (
-        <div className="h-60 flex flex-col overflow-auto mb-1">
+        <ItemsContainer>
           {cartItems.map((item) => (
             <CartItem key={item.id} cartItem={item} />
           ))}
-        </div>
+        </ItemsContainer>
       ) : (
-        <span className="flex h-[80%] justify-center items-center font-light">
-          Your cart is empty.
-        </span>
+        <Text>Your cart is empty.</Text>
       )}
-      {/* Cart Items */}
-      <Button className="h-[20%] mt-auto ">
-        <Link to={"/checkout"}>Go To Checkout</Link>
+      <Button
+        className="h-[20%] mt-auto"
+        buttonType={BUTTON_TYPES_CLASSES.base}
+        onClick={goToCheckoutHandler}
+      >
+        Go To Checkout
       </Button>
-    </div>
+    </Container>
   );
 };
 

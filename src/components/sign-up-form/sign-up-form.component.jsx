@@ -3,8 +3,15 @@ import {
   createAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
 } from "../../utils/firebase/firebase.utils";
-import Button from "../button/button.component";
+import Button, { BUTTON_TYPES_CLASSES } from "../button/button.component";
 import FormInput from "../form-input/form-input.component";
+import {
+  ButtonContainer,
+  Container,
+  Form,
+  TextAccount,
+  TextSignUp,
+} from "./sign-up-form.styles";
 
 const defaultFormFields = {
   displayName: "",
@@ -48,16 +55,10 @@ const SignUpForm = () => {
     }
   };
   return (
-    <div className="flex flex-col w-[35%]">
-      <h2 className="mt-4">Don't have an account</h2>
-      <span className="text-xl font-semibold mb-8">
-        Sign up with your email and password
-      </span>
-      <form
-        action=""
-        onSubmit={handleSubmit}
-        className="flex flex-col justify-center space-y-6"
-      >
+    <Container>
+      <TextAccount>Don't have an account</TextAccount>
+      <TextSignUp>Sign up with your email and password</TextSignUp>
+      <Form onSubmit={handleSubmit}>
         <FormInput
           label="Display Name"
           inputOptions={{
@@ -102,17 +103,11 @@ const SignUpForm = () => {
             value: confirmPassword,
           }}
         />
-        <div className="">
-          <Button buttonType={"default"}>Sign up</Button>
-          {/* <button
-            className="px-4 py-2 bg-amber-400 rounded shadow "
-            type="submit"
-          >
-            Sign Up
-          </button> */}
-        </div>
-      </form>
-    </div>
+        <ButtonContainer>
+          <Button buttonType={BUTTON_TYPES_CLASSES.base}>Sign up</Button>
+        </ButtonContainer>
+      </Form>
+    </Container>
   );
 };
 

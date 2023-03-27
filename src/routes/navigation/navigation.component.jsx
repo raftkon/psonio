@@ -6,6 +6,18 @@ import { signOutUser } from "../../utils/firebase/firebase.utils";
 import CartDropdown from "../../components/cart-dropdown/cart-dropdown.component";
 import { CartContext } from "../../contexts/cart.context";
 import CartIcon from "../../components/cart-icon/cart-icon.component";
+import {
+  CapitalLetter,
+  CartContainer,
+  Container,
+  Footer,
+  InnerContainer,
+  LinksContainer,
+  LogoContainer,
+  RestLetters,
+  ShopLink,
+  SignInLink,
+} from "./navigation.styles";
 
 const Navigation = () => {
   const { currentUser } = useContext(UserContext);
@@ -19,48 +31,44 @@ const Navigation = () => {
     setIsCartOpen(!isCartOpen);
   };
   return (
-    <div className="container mx-auto flex flex-col min-h-screen ">
-      {/* navigation */}
-      <div
-        className="px-6 py-2 mb-4 border-b-2 
-        flex justify-between items-center"
-      >
+    <Container>
+      <InnerContainer>
         <Link to="/">
-          <div className="drop-shadow-md">
-            <span className="text-6xl text-rose-500 font-extrabold ">P</span>
-            <span className="text-3xl text-amber-400">sonio.</span>
-          </div>
+          <LogoContainer>
+            <CapitalLetter className="text-6xl text-rose-500 font-extrabold ">
+              P
+            </CapitalLetter>
+            <RestLetters className="text-3xl text-amber-400">
+              sonio.
+            </RestLetters>
+          </LogoContainer>
         </Link>
         {/* links container */}
-        <div className="space-x-4 flex items-center">
-          <Link to={"/shop"} className="font-medium">
-            Shop
-          </Link>
+        <LinksContainer>
+          <ShopLink to={"/shop"}>Shop</ShopLink>
           {currentUser ? (
             <Button onClick={handleSignOut} buttonType="inverted">
               Sign Out
             </Button>
           ) : (
-            <Link
+            <SignInLink
               className="text-white px-4 py-2 border rounded-lg bg-rose-600 
-              transition-all duration-300 hover:translate-x-2 hover:shadow hover:shadow-rose-300"
+            transition-all duration-300 hover:translate-x-2 hover:shadow hover:shadow-rose-300"
               to="/auth"
             >
               Sign In &rarr;
-            </Link>
+            </SignInLink>
           )}
-          <div
-            className="relative flex justify-center"
-            onClick={toggleIsCartOpen}
-          >
+          <CartContainer onClick={toggleIsCartOpen}>
             <CartIcon onClick={toggleIsCartOpen} />
-          </div>
+          </CartContainer>
           {isCartOpen && <CartDropdown />}
-        </div>
-      </div>
+        </LinksContainer>
+      </InnerContainer>
+
       <Outlet />
-      <footer className="mt-auto border-t-2 min-w-[100%] h-[60px]"></footer>
-    </div>
+      <Footer className="mt-auto border-t-2 min-w-[100%] h-[60px]"></Footer>
+    </Container>
   );
 };
 

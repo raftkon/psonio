@@ -1,35 +1,26 @@
 import React from "react";
+import {
+  BaseButton,
+  GoogleSignInButton,
+  InvertedButton,
+} from "./button.styles";
 
-const buttonStyles = (type) => {
-  switch (type) {
-    case "google":
-      return "bg-[#4285f4] text-white hover:bg-[#3273dc] hover:border-none";
-    case "inverted":
-      return "bg-white text-black border border-black hover:bg-black  hover:text-white";
-    case "default":
-      return "bg-black text-white border border-black hover:bg-white hover:text-black";
-    default:
-      return "";
-  }
+export const BUTTON_TYPES_CLASSES = {
+  base: "base",
+  google: "google-sign-in",
+  inverted: "inverted",
 };
 
-const Button = ({
-  children,
-  buttonType = "default",
-  className = "",
-  ...otherProps
-}) => {
-  return (
-    <button
-      className={`px-4 py-2 rounded transition
-        duration-300 font-semibold hover:border ${buttonStyles(
-          buttonType
-        )} ${className}`}
-      {...otherProps}
-    >
-      {children}
-    </button>
-  );
+const getButton = (buttonType = BaseButton) =>
+  ({
+    [BUTTON_TYPES_CLASSES.base]: BaseButton,
+    [BUTTON_TYPES_CLASSES.google]: GoogleSignInButton,
+    [BUTTON_TYPES_CLASSES.inverted]: InvertedButton,
+  }[buttonType]);
+
+const Button = ({ children, buttonType, ...otherProps }) => {
+  const CustomButton = getButton(buttonType);
+  return <CustomButton {...otherProps}>{children}</CustomButton>;
 };
 
 export default Button;
