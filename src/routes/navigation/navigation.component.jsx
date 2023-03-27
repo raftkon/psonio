@@ -53,9 +53,9 @@ const Navigation = () => {
             className="relative flex justify-center"
             onClick={toggleIsCartOpen}
           >
-            <CartIcon />
-            {isCartOpen && <CartDropdown />}
+            <CartIcon onClick={toggleIsCartOpen} />
           </div>
+          {isCartOpen && <CartDropdown />}
         </div>
       </div>
       <Outlet />
