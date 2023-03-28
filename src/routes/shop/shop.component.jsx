@@ -1,17 +1,24 @@
-import React, { useContext } from "react";
-import CategoryPreview from "../../components/category-preview/category-preview.component";
-import { CategoriesContext } from "../../contexts/categories.context";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { Outlet } from "react-router-dom";
+import { setCategoriesArray } from "../../store/categories/categories.action";
+import { getCategoriesAndDocuments } from "../../utils/firebase/firebase.utils";
 
 const Shop = () => {
-  const { categoriesMap } = useContext(CategoriesContext);
-  console.log(categoriesMap);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const getCategoriesMap = async () => {
+      const categoriesArray = await getCategoriesAndDocuments();
+      console.log(categoriesArray);
+      dispatch(setCategoriesArray(categoriesArray));
+    };
+    getCategoriesMap();
+  }, []);
+
   return (
     <>
-      {Object.keys(categoriesMap).map((title, idx) => (
-        <div key={idx}>
-          <CategoryPreview title={title} products={categoriesMap[title]} />
-        </div>
-      ))}
+      <Outlet />
     </>
   );
 };

@@ -9,7 +9,7 @@ export const BaseButton = styled.button`
 `;
 
 export const GoogleSignInButton = styled(BaseButton)`
-  ${tw`bg-[#4285f4] border-[#4285f4] text-white hover:bg-[#3273dc] hover:border-[#3273dc]`}
+  ${tw`bg-[#4285f4] border-[#4285f4] hover:text-white hover:bg-[#3273dc] hover:border-[#3273dc]`}
 `;
 
 export const InvertedButton = styled(BaseButton)`

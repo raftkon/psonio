@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { Link, Outlet } from "react-router-dom";
 import Button from "../../components/button/button.component";
-import { UserContext } from "../../contexts/user.context";
 import { signOutUser } from "../../utils/firebase/firebase.utils";
 import CartDropdown from "../../components/cart-dropdown/cart-dropdown.component";
 import { CartContext } from "../../contexts/cart.context";
@@ -18,9 +17,11 @@ import {
   ShopLink,
   SignInLink,
 } from "./navigation.styles";
+import { useSelector } from "react-redux";
+import { selectCurrentUser } from "../../store/user/user.selector";
 
 const Navigation = () => {
-  const { currentUser } = useContext(UserContext);
+  const currentUser = useSelector(selectCurrentUser);
   const { isCartOpen, setIsCartOpen } = useContext(CartContext);
 
   const handleSignOut = async () => {
@@ -35,12 +36,8 @@ const Navigation = () => {
       <InnerContainer>
         <Link to="/">
           <LogoContainer>
-            <CapitalLetter className="text-6xl text-rose-500 font-extrabold ">
-              P
-            </CapitalLetter>
-            <RestLetters className="text-3xl text-amber-400">
-              sonio.
-            </RestLetters>
+            <CapitalLetter>P</CapitalLetter>
+            <RestLetters>sonio.</RestLetters>
           </LogoContainer>
         </Link>
         {/* links container */}
@@ -51,13 +48,7 @@ const Navigation = () => {
               Sign Out
             </Button>
           ) : (
-            <SignInLink
-              className="text-white px-4 py-2 border rounded-lg bg-rose-600 
-            transition-all duration-300 hover:translate-x-2 hover:shadow hover:shadow-rose-300"
-              to="/auth"
-            >
-              Sign In &rarr;
-            </SignInLink>
+            <SignInLink to="/auth">Sign In &rarr;</SignInLink>
           )}
           <CartContainer onClick={toggleIsCartOpen}>
             <CartIcon onClick={toggleIsCartOpen} />

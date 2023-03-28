@@ -15,12 +15,8 @@ const CategoryItem = ({ category }) => {
     navigate(`/shop/${title}`);
   };
   return (
-    <Container onClick={onNavigateHandler}>
-      <Img
-        src={imageUrl}
-        alt={title}
-        className="w-[100%] h-[100%] bg-cover bg-center object-cover transition duration-1000 group-hover:scale-110 group-hover:ease-in-out"
-      />
+    <Container onClick={onNavigateHandler} className="group">
+      <Img src={imageUrl} alt={title} />
       <InnerContainer>
         <Title>{title}</Title>
         <Text>Shop Now</Text>
