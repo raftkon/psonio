@@ -29,10 +29,12 @@ export const LinksContainer = styled.div`
 
 export const ShopLink = styled(Link)`
   ${tw`font-medium
+  border-b-2
+  border-white
+  transition
+  duration-300
   hover:border-b-2
   hover:border-black
-  transition
-  duration-200
   `}
 `;
 

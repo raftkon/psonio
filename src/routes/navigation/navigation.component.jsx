@@ -19,7 +19,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentUser } from "../../store/user/user.selector";
 import { selectIsCartOpen } from "../../store/cart/cart.selector";
-import { toggleCart } from "../../store/cart/cart.action";
+import { toggleIsCartOpen } from "../../store/cart/cart.slice";
 
 const Navigation = () => {
   const currentUser = useSelector(selectCurrentUser);
@@ -29,8 +29,8 @@ const Navigation = () => {
     await signOutUser();
   };
 
-  const toggleIsCartOpen = () => {
-    dispatch(toggleCart());
+  const toggleCartHandler = () => {
+    dispatch(toggleIsCartOpen());
   };
   return (
     <Container>
@@ -51,8 +51,8 @@ const Navigation = () => {
           ) : (
             <SignInLink to="/auth">Sign In &rarr;</SignInLink>
           )}
-          <CartContainer onClick={toggleIsCartOpen}>
-            <CartIcon onClick={toggleIsCartOpen} />
+          <CartContainer onClick={toggleCartHandler}>
+            <CartIcon />
           </CartContainer>
           {isCartOpen && <CartDropdown />}
         </LinksContainer>
