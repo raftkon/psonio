@@ -37,7 +37,7 @@ export const ShopLink = styled(Link)`
 `;
 
 export const SignInLink = styled(Link)`
-  ${tw`text-white px-4 py-2 border rounded-lg bg-rose-600 
+  ${tw`text-white px-4 py-2    rounded-lg bg-rose-600 
         transition-all duration-300 hover:translate-x-2 hover:shadow hover:shadow-rose-300`}
 `;
 

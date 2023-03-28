@@ -1,5 +1,11 @@
 import React, { useContext } from "react";
-import { CartContext } from "../../contexts/cart.context";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addCartItem,
+  decreaseCartItem,
+  removeCartItem,
+} from "../../store/cart/cart.action";
+import { selectCartItems } from "../../store/cart/cart.selector";
 import {
   Container,
   Cross,
@@ -14,8 +20,12 @@ import {
 
 const CheckoutItem = ({ cartItem }) => {
   const { name, imageUrl, price, quantity } = cartItem;
-  const { addCartItem, decreaseCartItem, removeCartItem } =
-    useContext(CartContext);
+  const cartItems = useSelector(selectCartItems);
+  const dispatch = useDispatch();
+
+  const handleDecrease = () => dispatch(decreaseCartItem(cartItems, cartItem));
+  const handleAdd = () => dispatch(addCartItem(cartItems, cartItem));
+  const handleRemove = () => dispatch(removeCartItem(cartItems, cartItem));
   return (
     <Container>
       <ImgContainer>
@@ -23,12 +33,12 @@ const CheckoutItem = ({ cartItem }) => {
       </ImgContainer>
       <Title>{name}</Title>
       <InnerContainer>
-        <Cross onClick={() => decreaseCartItem(cartItem)}>&#8249;</Cross>
+        <Cross onClick={handleDecrease}>&#8249;</Cross>
         <Quantity>{quantity}</Quantity>
-        <Cross onClick={() => addCartItem(cartItem)}>&#8250;</Cross>
+        <Cross onClick={handleAdd}>&#8250;</Cross>
       </InnerContainer>
       <Price>{price}&euro;</Price>
-      <Remove onClick={() => removeCartItem(cartItem)}>&#10005;</Remove>
+      <Remove onClick={handleRemove}>&#10005;</Remove>
     </Container>
   );
 };
