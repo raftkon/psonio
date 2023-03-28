@@ -2,7 +2,6 @@ import CategoriesMenu from "../../components/categories-menu/categories-menu.com
 
 const HomePage = () => {
   return (
-    // categories-container
     <>
       <CategoriesMenu />
     </>
