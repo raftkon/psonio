@@ -25,3 +25,5 @@ yarn-error.log*
 component-structure.drawio
 
 .env
+# Local Netlify folder
+.netlify

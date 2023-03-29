@@ -16,17 +16,24 @@ import {
 
 const App = () => {
   const dispatch = useDispatch();
-
   useEffect(() => {
     const unsubscribe = onAuthStateChangedListener((user) => {
-      if (user) {
-        createUserDocumentFromAuth(user);
+      async function setUser(user) {
+        if (user) {
+          const userSnapshot = await createUserDocumentFromAuth(user);
+          const userData = await userSnapshot.data();
+          console.log(userData);
+          const pickedUser = userData && {
+            accessToken: user.accessToken,
+            email: userData.email,
+            displayName: userData.displayName,
+          };
+          dispatch(setCurrentUser(pickedUser));
+        } else {
+          dispatch(setCurrentUser(user));
+        }
       }
-      const pickedUser = user && {
-        accessToken: user.accessToken,
-        email: user.email,
-      };
-      dispatch(setCurrentUser(pickedUser));
+      setUser(user);
     });
 
     return unsubscribe;

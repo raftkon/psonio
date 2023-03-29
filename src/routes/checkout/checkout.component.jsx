@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import CheckoutItem from "../../components/checkout-item/checkout-item.component";
+import PaymentForm from "../../components/payment-form/payment-form.component";
 import {
   selectCartItems,
   selectCartTotal,
@@ -17,7 +18,6 @@ const Checkout = () => {
   const cartTotal = useSelector(selectCartTotal);
   const cartItems = useSelector(selectCartItems);
 
-  console.log(cartItems);
   const headerTitles = ["Product", "Name", "Quantity", "Price", "Remove"];
 
   return (
@@ -29,16 +29,19 @@ const Checkout = () => {
           </HeaderTitleContainer>
         ))}
       </HeaderTitlesContainer>
-      {cartItems.length !== 0 ? (
-        cartItems.map((cartItem) => (
-          <CheckoutItem key={cartItem.id} cartItem={cartItem} />
-        ))
-      ) : (
-        <div className="h-64 flex justify-center items-center">
-          <span className="text-xl font-normal">Your cart is empty.</span>
-        </div>
-      )}
+      <div className="my-auto w-full">
+        {cartItems.length !== 0 ? (
+          cartItems.map((cartItem) => (
+            <CheckoutItem key={cartItem.id} cartItem={cartItem} />
+          ))
+        ) : (
+          <div className="h-64 flex justify-center items-center">
+            <span className="text-lg font-normal">Your cart is empty</span>
+          </div>
+        )}
+      </div>
       <Total>Total: {cartTotal}&euro;</Total>
+      <PaymentForm />
     </Container>
   );
 };

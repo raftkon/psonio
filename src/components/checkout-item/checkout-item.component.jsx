@@ -18,7 +18,6 @@ import {
 } from "./checkout-item.styles";
 
 const CheckoutItem = ({ cartItem }) => {
-  console.log(cartItem);
   const { name, imageUrl, price, quantity } = cartItem;
   const dispatch = useDispatch();
 
