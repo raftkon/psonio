@@ -17,6 +17,7 @@ const Checkout = () => {
   const cartTotal = useSelector(selectCartTotal);
   const cartItems = useSelector(selectCartItems);
 
+  console.log(cartItems);
   const headerTitles = ["Product", "Name", "Quantity", "Price", "Remove"];
 
   return (
@@ -28,9 +29,15 @@ const Checkout = () => {
           </HeaderTitleContainer>
         ))}
       </HeaderTitlesContainer>
-      {cartItems.map((cartItem) => (
-        <CheckoutItem key={cartItem.id} cartItem={cartItem} />
-      ))}
+      {cartItems.length !== 0 ? (
+        cartItems.map((cartItem) => (
+          <CheckoutItem key={cartItem.id} cartItem={cartItem} />
+        ))
+      ) : (
+        <div className="h-64 flex justify-center items-center">
+          <span className="text-xl font-normal">Your cart is empty.</span>
+        </div>
+      )}
       <Total>Total: {cartTotal}&euro;</Total>
     </Container>
   );
