@@ -18,5 +18,5 @@ export const Form = styled.form`
 `;
 
 export const ButtonsContainer = styled.div`
-  ${tw`space-x-2`}
+  ${tw`space-x-2 flex`}
 `;
