@@ -22,7 +22,6 @@ const App = () => {
         if (user) {
           const userSnapshot = await createUserDocumentFromAuth(user);
           const userData = await userSnapshot.data();
-          console.log(userData);
           const pickedUser = userData && {
             accessToken: user.accessToken,
             email: userData.email,
